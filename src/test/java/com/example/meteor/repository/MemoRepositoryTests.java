@@ -11,6 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
+
+import java.util.List;
 
 @SpringBootTest
 public class MemoRepositoryTests {
@@ -79,7 +82,7 @@ public class MemoRepositoryTests {
     } */
 
     //정렬 조건 추가 (내림차순)
-    @Test
+    /* @Test
     public void testSort(){
         Sort sort1 = Sort.by("mno").descending();
         Sort sort2 = Sort.by("memoText").ascending();
@@ -91,7 +94,38 @@ public class MemoRepositoryTests {
         result.get().forEach(memo ->{
             System.out.println(memo);
         });
-    }
+    }*/
+
+    //70에서 80사이의 객체를 내림차순으로 구하는 쿼리메서드 예제
+    /*@Test
+    public void testQueryMethod(){
+        List<Memo> list = memoRepository.findByMnoBetweenOrderByMnoDesc(70L,80L);
+
+        for (Memo memo : list){
+            System.out.println(memo);
+        }
+    }*/
+
+    //쿼리메서드와 Pageable을 결합한 메서드
+    /*@Test
+    public void testQueryMethodWithPageable(){
+        Pageable pageable = PageRequest.of(0,10,Sort.by("mno").descending());
+        Page<Memo> result = memoRepository.findByMnoBetween(10L,50L,pageable);
+
+        result.get().forEach(memo -> System.out.println(memo));
+    }*/
+
+    //Delete By로 시작하는 객체 삭제 메서드
+    //mno가 10보다 작은 데이터를 삭제
+    /* @Commit
+    @Transactional
+    @Test
+    public void testDeleteQueryMethod(){
+        memoRepository.deleteMemoByMnoLessThan(10L);
+    }*/
+
+
+
 
     }
 
