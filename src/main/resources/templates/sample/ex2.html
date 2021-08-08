@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul>
+        <!--인덱스 번호 지정 -->
+        <li th:each = "dto,state : ${list}">
+            [[${state.index}]] --- [[${dto}]]
+        </li>
+    </ul>
+    <!-- 특정한 CSS 적용-->
+    <style>
+        .target{
+            background-color: red;
+        }
+    </style>
+    <!--sno의 값이 5의 배수들만 출력 -->
+    <ul>
+        <li th:each=" dto,state: ${list}" >
+            <span th:if = "${dto.sno % 5 ==0}" th:class = "${'------------'+dto.sno}?'target'"></span>
+            <span th:unless=" ${dto.sno % 5==0}" th:text = "${dto.first}"></span>
+            [[${dto}]]
+        </li>
+    </ul>
+
+</body>
+</html>
